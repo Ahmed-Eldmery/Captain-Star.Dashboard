@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Clients Social Dashboard</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+</head>
+<body>
+<div id="loginView">
+  <div class="login-container">
+    <h2>Login</h2>
+    <p class="small">Please enter your company email and password.</p>
+    <label>Email</label>
+    <input type="email" id="loginEmail" placeholder="you@company.com" />
+    <label>Password</label>
+    <input type="password" id="loginPassword" />
+    <button class="btn btn-primary" onclick="login()">Login</button>
+    <div id="loginError" class="small" style="color:#ff4b5c;"></div>
+  </div>
+</div>
+
+<div id="appView" class="hidden">
+  <div class="topbar">
+    <div class="topbar-left">
+      <!-- تأكد إن ملف اللوجو اسمه logo.png وموجود داخل public -->
+      <img class="logo" src="logo.png" alt="Captain Star Logo">
+      <div>
+        <div class="brand-title">CAPTAIN STAR DASHBOARD</div>
+        <div class="brand-sub">Clients Social Control Center</div>
+      </div>
+    </div>
+    <div class="topbar-user">
+  <div class="user-summary" onclick="toggleUserMenu(event)">
+    <div class="user-text">
+      <div id="topUserName"></div>
+      <div class="small" id="topUserRole"></div>
+    </div>
+    <span class="user-caret">▾</span>
+  </div>
+
+  <div id="userMenu" class="user-menu hidden">
+    <button class="user-menu-item" onclick="logout()">Logout</button>
+    <!-- ممكن تزود اختيارات تانية هنا بعدين -->
+  </div>
+</div>
+
+  </div>
+
+  <div class="app">
+    <div class="sidebar">
+      <h2>Navigation</h2>
+      <button id="btnDashboard" onclick="showPage('dashboard')">Social Dashboard</button>
+      <button id="btnClients" onclick="showPage('clients')">Clients</button>
+      <button id="btnUsers" onclick="showPage('users')">Users & Roles</button>
+    </div>
+    <div class="main">
+      <!-- Dashboard -->
+      <div id="pageDashboard" class="page">
+        <div class="header">
+          <div class="header-title">Social Accounts</div>
+          <div class="flex">
+            <div>
+              <label>Platform</label>
+              <select id="dashPlatform" onchange="loadDashboard()">
+                 <option value="">All</option>
+                  <option value="facebook">Facebook</option>
+                  <option value="instagram">Instagram</option>
+                  <option value="tiktok">TikTok</option>
+                  <option value="snapchat">Snapchat</option>
+                  <option value="youtube">YouTube</option>
+                  <option value="whatsapp">WhatsApp</option>
+                  <option value="telegram">Telegram</option>
+                  <option value="x">X (Twitter)</option>
+                  <option value="linkedin">LinkedIn</option>
+                  <option value="pinterest">Pinterest</option>
+                  <option value="threads">Threads</option>
+                  <option value="discord">Discord</option>
+                  <option value="twitch">Twitch</option>
+              </select>
+            </div>
+            <div>
+              <label>Search</label>
+              <input id="dashSearch" oninput="loadDashboard()" placeholder="Handle or URL" />
+            </div>
+          </div>
+        </div>
+        <div id="dashboardTable"></div>
+      </div>
+
+      <!-- Clients -->
+      <div id="pageClients" class="page hidden">
+        <div class="header">
+          <div class="header-title">Clients</div>
+          <button class="btn btn-primary" id="btnAddClient" onclick="openClientForm()">Add Client</button>
+        </div>
+        <div id="clientsList"></div>
+        <div id="clientFormContainer" class="card hidden"></div>
+        <div id="clientDetailContainer" class="card hidden"></div>
+      </div>
+
+      <!-- Users -->
+      <div id="pageUsers" class="page hidden">
+        <div class="header">
+          <div class="header-title">Users & Roles</div>
+          <button class="btn btn-primary" onclick="openUserForm()">Add User</button>
+        </div>
+        <div id="usersList"></div>
+        <div id="userFormContainer" class="card hidden"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="app-footer">
+  <span>Crafted with care by <strong>A. Eldmery</strong></span>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
+
